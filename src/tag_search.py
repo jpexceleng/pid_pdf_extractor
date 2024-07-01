@@ -10,7 +10,7 @@ def getDrawingNameFromPath(path):
     "extracted/PID-1000 - WEIGHINGDISPENSING ROOM 1640.txt"
     """
     filename = path.split("/")
-    name = filename[1].split(" - ")
+    name = filename[2].split(" - ")
     name = name[0].strip()
     return name
 
@@ -137,7 +137,7 @@ def main():
     tagsFile = 'input/tags.txt'
     mpppFilepathsFile = 'input/mppp_filepaths.txt'
     pidFilepathsFile = 'input/pid_filepaths.txt'
-    resultsFilepath = 'results/results.txt'
+    resultsFilepath = 'output/results.txt'
 
     results = initResultsList(tagsFile)
 

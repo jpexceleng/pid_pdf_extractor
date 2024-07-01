@@ -4,7 +4,7 @@ from os import listdir
 from os.path import isfile, join
 
 # place extracted file names in a list.
-dest_dir = 'extracted/'
+dest_dir = 'output/extracted_pdfs/'
 dest_files = [f for f in listdir(dest_dir) if isfile(join(dest_dir, f))]
 
 def writeFilenames():
