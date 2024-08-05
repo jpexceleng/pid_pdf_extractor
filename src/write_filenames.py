@@ -11,3 +11,5 @@ def writeFilenames():
     """Helper function for outputting filenames in a directory."""
     for fn in dest_files:
         print(fn)
+
+writeFilenames()
