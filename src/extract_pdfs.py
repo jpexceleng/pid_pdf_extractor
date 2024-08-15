@@ -35,9 +35,11 @@ def main():
         reader = PyPDF2.PdfReader(pdfFileObj)
         pageObj = reader.pages[0]
 
-        # create text file to store extracted data
+        # change file extension on destination file path from pdf to txt
+        pdf_file = pdf_file.replace('pdf', 'txt')
+
+        # create full desination file path and open to write extracted pdf data
         dest_path = dest_dir + pdf_file 
-        dest_path = dest_path.replace('pdf', 'txt')
         fh = open(dest_path, 'w')
         
         # extract and write data

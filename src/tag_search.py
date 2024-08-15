@@ -21,8 +21,10 @@ INDEX_PID = 1
 INDEX_MPPP = 2
 
 
-# read tags from file and initialize results array
 def initResultsList(tagsFilePath):
+    """
+    Initialize results array and read tags from file.
+    """
     results = []
     tagsFile = open(tagsFilePath, "r")
     for tag in tagsFile:
@@ -37,8 +39,7 @@ def foundInPipingPlanFile(pipingPlanFilepath, tag):
     """
     Takes path to piping plan extracted text file and tag number. 
     
-    Returns True if tag number is found in text file.
-    Returns False otherwise.
+    Returns True if tag number is found in text file and False otherwise.
     """
     foundFlag = False
     fh = open(pipingPlanFilepath, "r")
@@ -53,8 +54,7 @@ def foundInPIDFile(pidFilepath, tag):
     """
     Takes path to piping plan extracted text file and tag number. 
     
-    Returns True if tag number is found in text file.
-    Returns False otherwise.
+    Returns True if tag number is found in text file and False otherwise.
     """
     foundFlag = False
     fh = open(pidFilepath, "r")
@@ -65,8 +65,10 @@ def foundInPIDFile(pidFilepath, tag):
     return foundFlag
 
 
-# read piping plan filenames from file into list
 def getPipingPlanPaths(pipingPlanFilepathsFile):
+    """
+    Read piping plan filenames from file into list.
+    """
     paths = []
     pipingPlanPathsFile = open(pipingPlanFilepathsFile, "r")
     for line in pipingPlanPathsFile:
@@ -75,8 +77,10 @@ def getPipingPlanPaths(pipingPlanFilepathsFile):
     return paths
 
 
-# read pid filenames from file into list
 def getPIDPaths(pidFilepathsFile):
+    """
+    Read pid filenames from file into list.
+    """
     paths = []
     pidPathsFile = open(pidFilepathsFile, "r")
     for line in pidPathsFile:
@@ -106,8 +110,10 @@ def searchForTags(results, paths, index):
         result[index] = found
 
 
-# write results to file
 def writeResultsToFile(resultsFilepath, results):
+    """
+    Write results to file.
+    """
     resultsFile = open(resultsFilepath, "w")
     for result in results:
         line = result[INDEX_TAG]
@@ -139,14 +145,18 @@ def main():
     pidFilepathsFile = 'input/pid_filepaths.txt'
     resultsFilepath = 'output/results.txt'
 
+    # initialize results array.
     results = initResultsList(tagsFile)
 
+    # search for tags in piping plans.
     pipingPlanPaths = getPipingPlanPaths(mpppFilepathsFile)
     searchForTags(results, pipingPlanPaths, INDEX_MPPP)
     
+    # search for tags in pids.
     pidPlanPaths = getPIDPaths(pidFilepathsFile)
     searchForTags(results, pidPlanPaths, INDEX_PID)
 
+    # write results to file.
     writeResultsToFile(resultsFilepath, results)
 
 
